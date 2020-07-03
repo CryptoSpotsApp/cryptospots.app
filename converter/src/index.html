@@ -1,0 +1,205 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    html, body {margin: 0; height: 100%; overflow: hidden}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-bottom: 100px;
+      margin: 0;
+      background-color: #ebf3f3;
+      }
+
+    .dropbtn {
+        background-color: darkcyan;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block; 
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 150px;
+        max-height: 150px; 
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block; 
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1 ; 
+    } 
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+        overflow: auto ;
+        height: 50 px ;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: darkcyan;
+    }
+
+  </style>
+
+  <title>Converter Widget</title>
+  <meta name="description" content="Converter Widget">
+  <meta name="author" content="Hilobrain">
+
+</head>
+
+<form class="w3-container">
+  <div style = "background-color: #ebf3f3; color: black; width:max-content ">
+    <h2>USD to Crypto Converter</h2>
+  </div>
+  <p>
+
+  <label style="font-size: large;">$USD</label>
+  <input type="text" class = "w3-input" id="usd" name="usd" onkeyup="convert()">
+  <label style="font-size: large;">equals: </label>
+  <label style="font-size: large; width: 250px;" type = "text" id="crypto_amount" name="crypto_amount"></label>
+
+  <div class = "dropdown" id="crypto_selected" onchange="convert()">
+    <button class="dropbtn" id = "select_button"></button>
+      <div class="dropdown-content">
+          <a value="bitcoin" onclick = "select_crypto('bitcoin')">Bitcoin</a>
+          <a value="ethereum" onclick = "select_crypto('ethereum')">Ethereum</a>
+          <a value="litecoin" onclick = "select_crypto('litecoin')">Litecoin</a>
+          <a value="cryptospot-token" onclick = "select_crypto('cryptospot-token')">Cryptospot Token</a>
+      </div>
+  </div>
+</form>
+
+<body onload = "init()">
+  <script type="text/javascript">
+  
+    var cryptos = ["bitcoin", "ethereum", "litecoin", "cryptospot-token"] //cryptocurrencies converted. Name as in url on coingecko
+    var custom_bases = ["bitcoin", "ethereum"] //BTC and ETH as potential base currencies for crypto's with only X/BTC or X/ETH markets
+    var prices = [] ; 
+    var crypto_selected = "bitcoin" ; //default selected crypto
+
+    function init() {
+      //initial function run on page load
+      get_bases() ; //get base currency price data for potential conversion
+      get_price_data() ; //get price data of all cryptocurrencies selected
+
+      //setup input filter (only floats)
+      setInputFilter(document.getElementById("usd"), function(value) {
+        return /^\d*\.?\d*$/.test(value);
+      });
+
+      //set dropdown menu text to default
+      document.getElementById("select_button").innerHTML = capitalizeFirstLetter(crypto_selected) ;
+    }
+
+    function get_bases() {
+      //get base currency price data on page load for potential conversion
+      for (i = 0; i < custom_bases.length; i++) {
+          var request = new XMLHttpRequest()
+          //get data from coingecko API
+          request.open('GET', 'https://api.coingecko.com/api/v3/coins/' + custom_bases[i], true)
+
+          request.onload = function() {
+              var data = JSON.parse(this.response) ;  //parse data to JavaScript object
+              console.log(data) ; 
+              console.log("JSON data:", data.tickers[0].last) ;
+              prices[data.id] = data.tickers[0].last ; //save data in dictionary
+          }
+          request.send() ; //send the data request to API
+        }
+    }
+
+    function get_price_data() {
+      //get price data of all currencies selected
+        prices = [] ;   //start with empty array, update all data
+        for (i = 0; i < cryptos.length; i++) {
+          var request = new XMLHttpRequest()
+          request.open('GET', 'https://api.coingecko.com/api/v3/coins/' + cryptos[i], true)
+
+          request.onload = function() {
+              var data = JSON.parse(this.response) ;  //parse data to JavaScript object
+              console.log(data) ; 
+              console.log("JSON data:", data.tickers[0].last) ;
+              if (data.tickers[0].target == "BTC") {  //when only BTC market, multiply with BTC price
+                  prices[data.id] = data.tickers[0].last * prices["bitcoin"] ; 
+              }
+
+              if (data.tickers[0].target == "ETH") { //when only ETH market, multiply with ETH price
+                prices[data.id] = data.tickers[0].last * prices["ethereum"] ; 
+              }
+
+              if (data.tickers[0].target == "USDT" || data.tickers[0].target == "USD") { //standard USD market
+                  prices[data.id] = data.tickers[0].last ;
+              }   
+          }
+          request.send() ; //send data request to API
+        }
+    }
+
+    function select_crypto(crypto){
+      //user selected other crypto in dropdown menu, change dropdown text and update conversion
+      crypto_selected = crypto ;
+      document.getElementById("select_button").innerHTML = capitalizeFirstLetter(crypto) ;
+      convert() ;  
+    }
+
+    function convert() {
+      //convert the input to crypto amount using currently selected crypto in dropdown menu
+      usd = document.getElementById("usd").value ;
+      console.log(usd) ;
+
+      price_selected = prices[crypto_selected] ;  
+
+      console.log(price_selected) ; 
+
+      amount = usd/price_selected ;
+      console.log(amount) ;
+      
+      document.getElementById("crypto_amount").innerHTML = amount  + " " + capitalizeFirstLetter(crypto_selected) + " @ $" + price_selected; 
+    }
+  
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function setInputFilter(textbox, inputFilter) {
+      //filter the input of the user in the USD input label, only floats are allowed
+      ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+        textbox.addEventListener(event, function() {
+          if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+          } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+          } else {
+            this.value = "";
+          }
+        });
+      });
+    }
+
+  </script>
+
+</body>
+</html>
