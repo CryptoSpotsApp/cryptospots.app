@@ -5,7 +5,7 @@ Did Satoshi imagine that there would be trillions of absolutely worthless or dea
 Where can we use these assets? Who can we trust in this trustless crypto-space? Which project will exit-scam and disappear with “pre-sale BTC” and leave its’ community with another worthless digital asset?
 In a constantly evolving market of avatars and repositories, it can be difficult to decide who can be trusted or where assets are accepted.
 
-#ABSTRACT
+# ABSTRACT
 The crypto-community NEEDS a trustworthy resource that provides information on not only where to spend digital assets, but also the overall trust rating and availability of these merchants. As the industry grows,
 weaker projects will die out and the stronger projects will become more deeply ingrained into societal use with widespread acceptance and eventual mass adoption.
 The elephant in the room - is a lack of information about where to use cryptocurrency and how to use it. There is a
@@ -14,7 +14,7 @@ interactive API’s, and even debit card integration. Users need information and
 But why would someone spend their hard-earned assets?
 ……. INCENTIVIZATION
 
-#INTRODUCTION
+# INTRODUCTION
 Cryptospot token (SPOT) has a vision to connect users with merchants around the globe in both online and physical
 retail markets. We want to bridge the infinite gap that is the question: “Where can I spend these crypto assets?”
 In the palm of your hand you hold the most powerful device known to man. No need to guess, IT’S YOUR
@@ -24,15 +24,15 @@ Partnering with retailers all over the world, we will link users to merchants in
 The user can locate retailers both online and cartographically using a simple mobile application. The
 merchant can advertise their products and inform the user which assets are accepted and what services and goods can be acquired.
 
-#EXPLANATION
+# EXPLANATION
 We are creating a mobile DApp that features an interactive map of businesses that accept cryptocurrency as payment. Users of the app will see the locations of the businesses, the type of business, the currencies they accept, the reputation of the retailer, and links to their website.
 In another section of the app there will be a comprehensive list of online retailers that accept digital assets. This will be a separate tab that does not interact with the map.
 Retailers and vendors will benefit from using this app as they will be rewarded with SPOT Tokens. These tokens can be traded on exchanges and used at participating locations or websites.
 The DApp will have interactive sorting methods and search criteria, as well as a reward system integrated directly into the app.
 
-#BENEFITS
+# BENEFITS
 
-##RETAILER
+## RETAILER
 - Exposure and advertising
 - New methods of payment
 - Rewards for trustworthy practices
@@ -40,7 +40,7 @@ The DApp will have interactive sorting methods and search criteria, as well as a
 - Web integration
 - Participation in unique cryptographic events
 
-##CONSUMER
+## CONSUMER
 - Access to information
 - Discover new places to use assets
 - Rewards for participation
