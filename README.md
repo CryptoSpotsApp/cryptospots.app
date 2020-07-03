@@ -1,3 +1,5 @@
+![logo](logo.png)
+
 # Official Cryptospots.app repo ($SPOT)
 Locate and Connect with Businesses that Accept Crypto Payments. https://cryptospots.app
 
