@@ -35,8 +35,19 @@ $SPOT is a TRC-10 tron token, live on the Tron blockchain as of 2018-11-09 06:00
 
 ## FAQs
 - How can I become a member?
+*Making your CryptoSpots App account is easy and free. Just go to to our Members Area and register. Enjoy all of the useful business listing tools, admin control features, and website ammenities.*
+
 - How do I activate my account?
+*After you Register your new account, an activation email will be sent to the address that you have provided during the account's creation. Simply click on link and you can now Login to your account.*
+
 - Where can I find the Terms & Conditions?
+*Please read our Terms and Conditions in full before accessing any of the material, or participating in our promgrams here at CryptoSpots. All users are to be bound by the conditions, and can be viewed here 'Terms and Conditions' and 'Privacy Policy'*
+
 - What do you mean with bounties? How do I earn them?
+*Coming Soon..! Programs will be made available on bounty boards.*
+
 - Where do I find my wallet balance?
+*Multi-Coin Wallets, Bounties Reward System, and 'SPOT Token' integration is under development and will be enabled in the Members Area on Account Login as soon as the features are available. *
+
 - How long does it take to get listed?
+*Getting listed is easy. Just click the 'GET LISTED' button at the top of the page and choose your plan. Fill out the brief form and submit your payment through our gateway. Your listing page will be displaying within 24hrs.*
