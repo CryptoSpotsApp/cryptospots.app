@@ -12,7 +12,7 @@ $SPOT is a TRC-10 tron token, live on the Tron blockchain as of 2018-11-09 06:00
 - Official website:     https://cryptospots.app/home
 - Business map:         https://cryptospots.app/index.php
 - Tronscan:             https://tronscan.org/#/token/1001308
-- Whitepaper:           Being written...
+- Whitepaper:           https://cryptospots.app/wp-content/uploads/White-Paper.pdf
 
 ## Exchanges
 - Crypto Center:  (SPOT/BTC)    https://crypto.center/exchange/?market=SPOT_BTC
