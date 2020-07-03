@@ -15,11 +15,16 @@ $SPOT is a TRC-10 tron token, live on the Tron blockchain as of 2018-11-09 06:00
 - Whitepaper:           Being written...
 
 ## Exchanges
-
+- Crypto Center:
+--              (SPOT/BTC)    https://crypto.center/exchange/?market=SPOT_BTC
+--              (SPOT/DOGE)   https://crypto.center/exchange/?market=SPOT_DOGE
+--              (SPOT/TRX)    https://crypto.center/exchange/?market=SPOT_TRX
+- Sistemkoin    (SPOT/BTC)    https://sistemkoin.com/trade/SPOT_BTC
+- Polonidex     (SPOT/TRX)    https://poloniex.org/exchange?id=121
 
 ## Wallets
 
 ## Community
 
-## FAQ
+## FAQs
 
