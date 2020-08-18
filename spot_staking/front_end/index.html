@@ -1,0 +1,383 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .btn-group button {
+            background-color: #d79144;
+            /* Green background */
+            border: 1px solid orange;
+            /* Green border */
+            color: white;
+            /* White text */
+            padding: 10px 24px;
+            /* Some padding */
+            cursor: pointer;
+            /* Pointer/hand icon */
+            float: left;
+            /* Float the buttons side by side */
+            border-radius: 5px;
+        }
+
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .btn-group button:not(:last-child) {
+            border-right: none;
+            /* Prevent double borders */
+        }
+
+        /* Add a background color on hover */
+        .btn-group button:hover {
+            background-color: #815628;
+        }
+
+        /* body {
+            background-color: #131722;
+        } */
+
+        .title {
+            text-align: center;
+            color: #d8d8d8;
+            font-family: 'Telefon Black', Sans-Serif;
+        }
+
+        .norm_text {
+            text-align: left;
+            color: black;
+            font-family: 'Telefon Black', Sans-Serif;
+        }
+
+        .link {
+            color: #cf5b73;
+        }
+
+        .link:hover {
+            color: #803846
+        }
+    </style>
+
+    <title>SPOT Staking</title>
+    <meta name="description" content="SPOT Staking">
+    <meta name="author" content="Hilobrain">
+
+    <link rel="stylesheet" href="Notiflix-2.1.3/Unminified/notiflix-2.1.3.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js"
+        integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script language="javascript" type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="Notiflix-2.1.3/Unminified/notiflix-2.1.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <div class="jumbotron text-center"
+        style="background-image: url('background.JPEG'); background-position: right; background-size: cover;">
+        <div class="header">
+            <!-- <img src="logo2.png" alt="logo" /> -->
+            <!-- <h1 style="color: black;">SPOT Staking Interface</h1> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="color: black;">SPOT Staking Interface</h1>
+        <p></p>
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Easy</h3>
+                <p>With the intelligent use of a smart contract, a one-click staking solution has been realized.</p>
+                <p>This makes it extremely easy for everyone to start staking using the <a class="link" target="_blank"
+                        href="https://www.tronlink.org/">TronLink</a> wallet. </p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Fast</h3>
+                <p>Low gas fees and fast block times in combination with the easy-to-use interface makes staking a
+                    blazingly fast experience.</p>
+                <p>Click the staking button, wait for the transaction to confirm and voilà!</p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Secure</h3>
+                <p>By exploiting the underlying Tron network, the SPOT token is as secure as the Tron network
+                    itself!</p>
+                <p>The contract has been developed with security in mind and is <a class="link" target="_blank"
+                        href="">100%
+                        verifiable</a> on the blockchain.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Staking Rewards</h2>
+        <p>The following table shows the staking rewards for different levels. The rewards compound so the longer you
+            hodl, the more SPOT you earn!</p>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Level</th>
+                    <th>Monthly</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lvl 1 (≥ 1K) </td>
+                    <td>0.75%</td>
+                </tr>
+                <tr>
+                    <td>Lvl 2 (≥ 5K)</td>
+                    <td>1.00%</td>
+                </tr>
+                <tr>
+                    <td>Lvl 3 (≥ 10K)</td>
+                    <td>1.50%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h2>Let's Stake!</h2>
+        <p>Below, a summary of your staking progress is given. Make sure to connect to <a class="link" target="_blank"
+                href="https://www.tronlink.org/">TronLink</a> to see your stats.</p>
+    </div>
+
+    <div class="container">
+        <p id="balance" class="norm_text">SPOT Balance: 0</p>
+        <p id="staking_amount" class="norm_text">Currently Staking: 0</p>
+        <p id="available_staking" class="norm_text">Available For Staking: 0</p>
+        <p id="reward" class="norm_text">Current Staking Reward: 0</p>
+    </div>
+
+    <span style="display:block; height: 100;"></span>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">How much do you want to stake?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+
+                </div>
+                <div class="modal-body">
+                    Please enter the amount of SPOT you would like to stake below. The minimum amount is 1000.
+                    <p></p>
+                    <form>
+                        <div class="input-group">
+                            <input id="stake_amount_input" type="text" class="form-control"
+                                aria-label="Text input with segmented dropdown button">
+                            <div class="input-group-append">
+                                <button type="button"
+                                    class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" onclick="set_percentage(25)">25%</a>
+                                    <a class="dropdown-item" onclick="set_percentage(50)">50%</a>
+                                    <a class="dropdown-item" onclick="set_percentage(75)">75%</a>
+                                    <a class="dropdown-item" onclick="set_percentage(100)">MAX</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" onclick="start_stake()">Stake!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <div class="container">
+            <button type="button" class="btn btn-secondary btn-lg" onclick="connect_tronlink()">Connect
+                TronLink</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter"">Stake!</button>
+            <button type=" button" class="btn btn-success btn-lg" onclick="stop_stake()">Get Rewards!</button>
+        </div>
+
+
+    </center>
+
+
+
+    <p></p>
+
+    <script type="text/javascript">
+
+        Notiflix.Notify.Init({
+            position: 'right-bottom',
+            clickToClose: true,
+            timeout: 5000,
+            success: {
+                background: "#28a745",
+            }
+        })
+
+        Notiflix.Report.Init({
+            success: {
+                svgColor: "#28a745",
+                buttonBackground: "#28a745",
+            },
+        })
+
+        var SPOT_balance;
+        var staking_amount;
+        var available_amount;
+        var reward;
+        var percent;
+
+        function set_percentage(percentile) {
+            percent = percentile / 100;
+            amount = parseInt(percentile / 100 * SPOT_balance);
+            console.log(amount);
+            document.getElementById("stake_amount_input").value = amount;
+        }
+
+        function start_stake() {
+            $('#exampleModalCenter').modal('toggle');
+            amount = document.getElementById("stake_amount_input").value
+            if (amount < 1000) {
+                Notiflix.Notify.Failure("The entered value does not exceed the minimal staking amount.")
+            } else {
+                stake(parseInt(amount));
+                console.log("Started staking sequence with " + amount + "SPOT tokens")
+            }
+        }
+
+        async function stake(amount) {
+            await SPOT_contract.methods.startMint().send({
+                tokenValue: amount,
+                tokenId: 1001308,
+                callValue: 1e6,
+                shouldPollResponse: true
+            }).then(function (value) {
+                console.log(value);
+                Notiflix.Notify.Success("Succesfully started staking!");
+            });
+            get_data();
+            Notiflix.Notify.Success("Succesfully started staking!");
+
+        }
+
+        async function stop_stake() {
+            if (reward != 0) {
+
+            await SPOT_contract.methods.stopMint().send({
+                from: account,
+                shouldPollResponse: true
+            });
+            Notiflix.Notify.Success("Succesfully stoped staking, your rewards have been deposited in your account!");
+            get_data();
+        } else {
+            Notiflix.Notify.Failure("No rewards available to claim.")
+        }
+        }
+
+        async function get_data() {
+            await get_balance();
+            await get_staking_amount();
+            await get_staking_reward();
+            console.log(SPOT_balance, staking_amount);
+            available_amount = SPOT_balance;
+            if (staking_amount != 0) {
+                available_amount = 0 ; 
+            }
+            if (available_amount < 0) {
+                available_amount = 0;
+            }
+            console.log(available_amount);
+            document.getElementById("available_staking").innerHTML = "Available For Staking: " + numberWithCommas(available_amount);
+            document.getElementById("stake_amount_input").value = parseInt(SPOT_balance);
+
+            setInputFilter(document.getElementById("stake_amount_input"), function (value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= parseInt(SPOT_balance));
+            });
+        }
+
+        async function get_staking_reward() {
+            await SPOT_contract.methods.getMintingReward(account).call().then(function (value) {
+                console.log("Staking Reward: " + value);
+                reward = parseInt(value["__reward"]["_hex"]);
+                document.getElementById("reward").innerHTML = "Current Staking Reward: " + reward;
+            });
+        }
+
+        async function get_balance() {
+            await SPOT_contract.methods.getTokenBalance().call().then(function (value) {
+                console.log("Balance: " + value);
+                SPOT_balance = value ;
+                document.getElementById("balance").innerHTML = "SPOT Balance: " + numberWithCommas(SPOT_balance);
+            });
+        }
+
+        async function get_staking_amount() {
+            await SPOT_contract.methods.mintingAmount(account).call().then(function (value) {
+                console.log("Staking Amount: " + value)
+                staking_amount = value;
+                document.getElementById("staking_amount").innerHTML = "Currently Staking: " + numberWithCommas(staking_amount);
+            });
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        //user address
+        var account;
+
+        var SPOT_contract;
+
+        //addresses
+        const SPOT_address = "TYTfQ6svpDZ8uLXqbaeVn6Dsi6t4pdfDrC";
+
+        async function connect_tronlink() {
+            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                account = window.tronWeb.defaultAddress.base58;
+                const userBalance = await tronWeb.trx.getBalance(account);
+                console.log(`User's balance is: ${userBalance}`);
+                SPOT_contract = await tronWeb.contract().at("TYTfQ6svpDZ8uLXqbaeVn6Dsi6t4pdfDrC");
+                Notiflix.Report.Success('Success!', "You are successfully connected to the Tron network!")
+                get_data();
+            }
+        }
+
+        function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+                textbox.addEventListener(event, function () {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        this.value = "";
+                    }
+                });
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
